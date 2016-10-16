@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">Alterar Ag&ecirc;ncia</ui:define>
+
+            <ui:define name="script">
+                <style type="text/css">
+                    div#tudo {width: 800px;}
+                </style>
+            </ui:define>
+
+            <ui:define name="content">
+
+                <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
+
+                <p:dialog modal="true" widgetVar="statusDialog" header="Carregando Cidades" draggable="false" closable="false">
+                    <h:outputText value="Carregando cidades, por favor aguarde..."/>
+                </p:dialog>
+
+                <h:form id="formAgencia">
+                    <p:panel header="Alterar Ag&ecirc;ncia">
+
+                        <h:panelGrid>
+                            <p:message for="formAgencia" />
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="3">
+                            <h:outputLabel value="Nome:" />
+                            <h:inputText id="nome" value="#{agenciaManagedBean.agencia.nome}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido para este campo n&atilde;o pode ter mais do que 255 caracteres">
+                                <f:validateLength minimum="1" maximum="255"/>
+                            </h:inputText>
+                            <p:message for="nome"/>
+                            <h:outputLabel value="N&uacute;mero da Ag&ecirc;ncia:" />
+                            <h:inputText id="numeroDaAgencia" value="#{agenciaManagedBean.agencia.numero}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido deve estar entre 1 e 100000" converterMessage="O valor fornecido n&atilde;o &eacute; um n&uacute;mero v&aacute;lido">
+                                <f:validateLongRange minimum="1" maximum="100000"/>
+                            </h:inputText>
+                            <p:message for="numeroDaAgencia"/>
+                            <h:outputLabel value="Logradouro:" />
+                            <h:inputText id="logradouro" value="#{agenciaManagedBean.agencia.endereco.logradouro}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido para este campo n&atilde;o pode ter mais do que 255 caracteres">
+                                <f:validateLength minimum="1" maximum="255"/>
+                            </h:inputText>
+                            <p:message for="logradouro"/>
+                            <h:outputLabel value="N&uacute;mero:" />
+                            <h:inputText id="numeroDoEndereco" value="#{agenciaManagedBean.agencia.endereco.numero}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido deve estar entre 1 e 100000" converterMessage="O valor fornecido n&atilde;o &eacute; um n&uacute;mero v&aacute;lido">
+                                <f:validateLongRange minimum="1" maximum="100000"/>
+                            </h:inputText>
+                            <p:message for="numeroDoEndereco"/>
+                            <h:outputLabel value="Bairro:" />
+                            <h:inputText id="bairro" value="#{agenciaManagedBean.agencia.endereco.bairro}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido para este campo n&atilde;o pode ter mais do que 255 caracteres">
+                                <f:validateLength minimum="1" maximum="255"/>
+                            </h:inputText>
+                            <p:message for="bairro"/>
+                            <h:outputLabel value="Complemento:" />
+                            <h:inputText id="complemento" value="#{agenciaManagedBean.agencia.endereco.complemento}" validatorMessage="O valor fornecido para este campo n&atilde;o pode ter mais do que 255 caracteres">
+                                <f:validateLength maximum="255"/>
+                            </h:inputText>
+                            <p:message for="complemento"/>
+                            <h:outputLabel value="Estado:" />
+                            <h:selectOneMenu id="idDoEstadoSelecionado" value="#{agenciaManagedBean.idDoEstadoSelecionado}">
+                                <f:selectItems value="#{agenciaManagedBean.estados}"/>
+                                <p:ajax update="idDaCidadeSelecionada" event="change" listener="#{agenciaManagedBean.recuperarCidadesPorEstado}" />
+                            </h:selectOneMenu>
+                            <h:outputText value="&nbsp;" />
+                            <h:outputLabel value="Cidade:" />
+                            <h:selectOneMenu id="idDaCidadeSelecionada" value="#{agenciaManagedBean.idDaCidadeSelecionada}">
+                                <f:selectItems value="#{agenciaManagedBean.cidadesPorEstado}" />
+                            </h:selectOneMenu>
+                            <h:outputText value="&nbsp;" />
+                            <h:outputLabel value="CEP:" />
+                            <h:inputText id="cep" value="#{agenciaManagedBean.agencia.endereco.cep}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido deve estar entre 10000000 e 99999999" converterMessage="O valor fornecido n&atilde;o &eacute; um n&uacute;mero v&aacute;lido">
+                                <f:validateLongRange minimum="10000000" maximum="99999999"/>
+                            </h:inputText>
+                            <p:message for="cep"/>
+                            <h:outputLabel value="Banco:" />
+                            <h:selectOneMenu id="idDoBancoSelecionado" value="#{agenciaManagedBean.idDoBancoSelecionado}">
+                                <f:selectItems value="#{agenciaManagedBean.bancos}"/>
+                            </h:selectOneMenu>
+                            <h:outputText value="&nbsp;" />
+                            <h:commandButton id="alterar" action="#{agenciaManagedBean.alterar}" value="Alterar" style="float: right" />
+                            <h:commandButton id="cancelar" action="/Principal" value="Cancelar" immediate="true" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">Listar Bancos</ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel header="Listar Bancos">
+                        <h:panelGrid>
+                            <h:outputText value="N&atilde;o existem bancos cadastrados" rendered="#{empty bancoManagedBean.bancos}" />
+
+                            <p:dataTable value="#{bancoManagedBean.bancos}" var="banco" paginator="true" rows="10" rendered="#{not empty bancoManagedBean.bancos}">
+                                <p:column sortBy="#{banco.nome}" filterBy="#{banco.nome}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Nome" />
+                                    </f:facet>
+                                    <h:outputText value="#{banco.nome}" />
+                                </p:column>
+                                <p:column sortBy="#{banco.cnpj}" filterBy="#{banco.cnpj}">
+                                    <f:facet name="header">
+                                        <h:outputText value="CNPJ" />
+                                    </f:facet>
+                                    <h:outputText value="#{banco.cnpj}" />
+                                </p:column>
+                                <p:column sortBy="#{banco.numero}" filterBy="#{banco.numero}">
+                                    <f:facet name="header">
+                                        <h:outputText value="N&uacute;mero"/>
+                                    </f:facet>
+                                    <h:outputText value="#{banco.numero}" />
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{bancoManagedBean.montarPaginaParaAlteracao}" value="Alterar">
+                                        <f:setPropertyActionListener value="#{banco}" target="#{bancoManagedBean.banco}" />  
+                                    </h:commandLink>
+                                    <h:outputText value="&nbsp;"/>
+                                    <h:commandLink action="#{bancoManagedBean.montarPaginaParaExclusao}" value="Excluir">
+                                        <f:setPropertyActionListener value="#{banco}" target="#{bancoManagedBean.banco}" />  
+                                    </h:commandLink>                                     x  
+                                </p:column>
+                            </p:dataTable>
+
+                            <h:commandButton id="cancelar" action="/Principal" value="Cancelar" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html> 

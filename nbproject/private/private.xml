@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/web/agencia/AlterarAgencia.xhtml</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/fachada/AgenciaFachada.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/apresentacao/managedbean/AgenciaManagedBean.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/fachada/TransacaoFachada.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/fachada/LogPaginaHistoricoDadosFachada.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/entidade/LogPaginaHistoricoDados.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/entidade/Endereco.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/fachada/BancoFachada.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/fachada/LogErroFachada.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/fachada/LogEventoPaginaFachada.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/web/banco/AlterarBanco.xhtml</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/entidade/LogErro.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/entidade/LogEventoPagina.java</file>
+            <file>file:/home/marco/workspace/AplicacaoFinanceira/src/java/negocio/fachada/LoginFachada.java</file>
+        </group>
+    </open-files>
+</project-private>

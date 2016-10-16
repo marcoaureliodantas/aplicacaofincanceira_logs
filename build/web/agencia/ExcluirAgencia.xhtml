@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">Excluir Ag&ecirc;ncia</ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel header="Excluir Ag&ecirc;ncia">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Nome:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.nome}" />
+                            <h:outputLabel value="N&uacute;mero da Ag&ecirc;ncia:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.numero}" />
+                            <h:outputLabel value="Logradouro:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.endereco.logradouro}" />
+                            <h:outputLabel value="N&uacute;mero:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.endereco.numero}" />
+                            <h:outputLabel value="Bairro:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.endereco.bairro}" />
+                            <h:outputLabel value="Complemento:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.endereco.complemento}" />
+                            <h:outputLabel value="Estado:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.endereco.cidade.estado.nome}" />
+                            <h:outputLabel value="Cidade:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.endereco.cidade.nome}" />
+                            <h:outputLabel value="CEP:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.endereco.cep}" />
+                            <h:outputLabel value="Banco:" />
+                            <h:outputText value="#{agenciaManagedBean.agencia.banco.nome}" />
+                            <h:commandButton id="excluir" action="#{agenciaManagedBean.excluir}" value="Excluir" style="float: right" />
+                            <h:commandButton id="cancelar" action="/Principal" value="Cancelar" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
