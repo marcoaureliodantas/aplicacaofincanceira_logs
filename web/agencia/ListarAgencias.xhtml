@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">Listar Ag&ecirc;ncias</ui:define>
+
+            <ui:define name="script">
+                <style type="text/css">
+                    div#tudo {width: 1200px;}
+                </style>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel header="Listar Ag&ecirc;ncias">
+                        <h:panelGrid>
+                            <h:outputText value="N&atilde;o existem ag&ecirc;ncias cadastradas" rendered="#{empty agenciaManagedBean.agencias}"/><br />
+
+                            <p:dataTable value="#{agenciaManagedBean.agencias}" var="agencia" paginator="true" rows="10" rendered="#{not empty agenciaManagedBean.agencias}">
+                                <p:column sortBy="#{agencia.nome}" filterBy="#{agencia.nome}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Nome"/>
+                                    </f:facet>
+                                    <h:outputText value="#{agencia.nome}"/>
+                                </p:column>
+                                <p:column sortBy="#{agencia.numero}" filterBy="#{agencia.numero}">
+                                    <f:facet name="header">
+                                        <h:outputText value="N&uacute;mero da Ag&ecirc;ncia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{agencia.numero}"/>
+                                </p:column>
+                                <p:column sortBy="#{agencia.endereco.logradouro}" filterBy="#{agencia.endereco.logradouro}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Logradouro"/>
+                                    </f:facet>
+                                    <h:outputText value="#{agencia.endereco.logradouro}"/>
+                                </p:column>
+                                <p:column sortBy="#{agencia.endereco.numero}" filterBy="#{agencia.endereco.numero}">
+                                    <f:facet name="header">
+                                        <h:outputText value="N&uacute;mero"/>
+                                    </f:facet>
+                                    <h:outputText value="#{agencia.endereco.numero}"/>
+                                </p:column>
+                                <p:column sortBy="#{agencia.endereco.cidade.estado.nome}" filterBy="#{agencia.endereco.cidade.estado.nome}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Estado"/>
+                                    </f:facet>
+                                    <h:outputText value="#{agencia.endereco.cidade.estado.nome}"/>
+                                </p:column>
+                                <p:column sortBy="#{agencia.endereco.cidade.nome}" filterBy="#{agencia.endereco.cidade.nome}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Cidade"/>
+                                    </f:facet>
+                                    <h:outputText value="#{agencia.endereco.cidade.nome}"/>
+                                </p:column>
+                                <p:column sortBy="#{agencia.banco.nome}" filterBy="#{agencia.banco.nome}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Banco"/>
+                                    </f:facet>
+                                    <h:outputText value="#{agencia.banco.nome}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="&nbsp;"/>
+                                    </f:facet>
+                                    <h:commandLink action="#{agenciaManagedBean.montarPaginaParaAlteracao}" value="Alterar">
+                                        <f:setPropertyActionListener value="#{agencia}" target="#{agenciaManagedBean.agencia}" />  
+                                    </h:commandLink>
+                                    <h:outputText value="&nbsp;"/>
+                                    <h:commandLink action="#{agenciaManagedBean.montarPaginaParaExclusao}" value="Excluir">
+                                        <f:setPropertyActionListener value="#{agencia}" target="#{agenciaManagedBean.agencia}" />  
+                                    </h:commandLink>
+                                </p:column>
+                            </p:dataTable>
+
+                            <h:commandButton id="cancelar" action="/Principal" value="Cancelar" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

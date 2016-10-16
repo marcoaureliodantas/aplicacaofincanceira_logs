@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">Efetuar Transa&ccedil;&atilde;o</ui:define>
+
+            <ui:define name="content">
+                <h:form id="formTransacao">
+                    <p:panel header="Efetuar Transa&ccedil;&atilde;o">
+
+                        <h:panelGrid>
+                            <p:message for="formTransacao" />
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="3">
+                            <h:outputLabel id="labelDoTipoDeTransacao" value="Tipo de transa&ccedil;&atilde;o" />
+                            <h:selectOneMenu id="tipoDeTransacao" value="#{transacaoManagedBean.tipoDeTransacao}">
+                                <f:selectItems value="#{transacaoManagedBean.tiposDeTransacao}" />
+                                <p:ajax update="formTransacao" event="change" listener="#{transacaoManagedBean.alterarTipoDeTransacao}" />
+                            </h:selectOneMenu>
+                            <h:outputText value="&nbsp;" />
+                            <h:outputLabel id="labelDaContaDeOrigem" value="N&uacute;mero da Conta de Origem:" rendered="#{transacaoManagedBean.exibirCamposContaDeOrigemEContaDeDestino}" />
+                            <h:inputText id="numeroDaContaDeOrigem" value="#{transacaoManagedBean.numeroDaContaDeOrigem}" rendered="#{transacaoManagedBean.exibirCamposContaDeOrigemEContaDeDestino}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido deve estar entre 1 e 100000" converterMessage="O valor fornecido n&atilde;o &eacute; um n&uacute;mero v&aacute;lido">
+                                <f:validateLongRange minimum="1" maximum="100000" />
+                            </h:inputText>
+                            <p:message for="numeroDaContaDeOrigem" rendered="#{transacaoManagedBean.exibirCamposContaDeOrigemEContaDeDestino}" />
+                            <h:outputLabel id="labelDaContaDeDestino" value="N&uacute;mero da Conta de Destino:" rendered="#{transacaoManagedBean.exibirCamposContaDeOrigemEContaDeDestino}" />
+                            <h:inputText id="numeroDaContaDeDestino" value="#{transacaoManagedBean.numeroDaContaDeDestino}" rendered="#{transacaoManagedBean.exibirCamposContaDeOrigemEContaDeDestino}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido deve estar entre 1 e 100000" converterMessage="O valor fornecido n&atilde;o &eacute; um n&uacute;mero v&aacute;lido">
+                                <f:validateLongRange minimum="1" maximum="100000" />
+                            </h:inputText>
+                            <p:message for="numeroDaContaDeDestino" rendered="#{transacaoManagedBean.exibirCamposContaDeOrigemEContaDeDestino}" />
+                            <h:outputLabel id="labelDaConta" value="N&uacute;mero da Conta:" rendered="#{!transacaoManagedBean.exibirCamposContaDeOrigemEContaDeDestino}" />
+                            <h:inputText id="numeroDaConta" value="#{transacaoManagedBean.numeroDaConta}" rendered="#{!transacaoManagedBean.exibirCamposContaDeOrigemEContaDeDestino}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido deve estar entre 1 e 100000" converterMessage="O valor fornecido n&atilde;o &eacute; um n&uacute;mero v&aacute;lido">
+                                <f:validateLongRange minimum="1" maximum="100000" />
+                            </h:inputText>
+                            <p:message for="numeroDaConta" rendered="#{!transacaoManagedBean.exibirCamposContaDeOrigemEContaDeDestino}" />
+                            <h:outputLabel value="Valor:" />
+                            <h:inputText id="valor" value="#{transacaoManagedBean.valor}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido deve estar entre 1 e 100000" converterMessage="O valor fornecido n&atilde;o &eacute; um n&uacute;mero v&aacute;lido">
+                                <f:validateDoubleRange minimum="1" maximum="100000" />
+                            </h:inputText>
+                            <p:message for="valor" />
+                            <h:commandButton id="efetuarTransacao" action="#{transacaoManagedBean.efetuarTransacao}" value="Efetuar Transa&ccedil;&atilde;o" style="float: right" />
+                            <h:commandButton id="cancelar" action="/Principal" value="Cancelar" immediate="true" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">Alterar Banco</ui:define>
+
+            <ui:define name="content">
+                <h:form id="formBanco">
+                    <p:panel header="Alterar Banco">
+
+                        <h:panelGrid>
+                            <p:message for="formBanco" />
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="3">
+                            <h:outputLabel value="Nome:" />
+                            <h:inputText id="nome" value="#{bancoManagedBean.banco.nome}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido para este campo n&atilde;o pode ter mais do que 255 caracteres">
+                                <f:validateLength minimum="1" maximum="255"/>
+                            </h:inputText>
+                            <p:message for="nome"/>
+                            <h:outputLabel value="CNPJ:" />
+                            <h:inputText id="cnpj" value="#{bancoManagedBean.banco.cnpj}"  required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio">
+                                <f:validator validatorId="validateCnpj"/>
+                            </h:inputText>
+                            <p:message for="cnpj"/>
+                            <h:outputLabel value="N&uacute;mero:" />
+                            <h:inputText id="numero" value="#{bancoManagedBean.banco.numero}" required="true" requiredMessage="Campo de preenchimento obrigat&oacute;rio" validatorMessage="O valor fornecido deve estar entre 1 e 100000" converterMessage="O valor fornecido n&atilde;o &eacute; um n&uacute;mero v&aacute;lido">
+                                <f:validateLongRange minimum="1" maximum="100000"/>
+                            </h:inputText>
+                            <p:message for="numero"/>
+                            <h:commandButton id="alterar" action="#{bancoManagedBean.alterar}" value="Alterar" />
+                            <h:commandButton id="cancelar" action="/Principal" value="Cancelar" immediate="true" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
